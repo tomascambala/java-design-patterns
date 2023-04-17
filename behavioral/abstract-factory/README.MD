@@ -1,6 +1,6 @@
 # Intent
 
-Provide an interface for creating families or related or dependant objects without specifying their concrete classes.
+Provide an interface for creating families of related or dependant objects without specifying their concrete classes.
 
 ## Applicability
 
@@ -9,5 +9,5 @@ Provide an interface for creating families or related or dependant objects witho
     - if you provide class library products, you reaveal only their interfaces not impl.
 
     - a family or related product object is designed to be used together and you enforce the constrains
-    
+
     - system should be configured with one of multiple families of products
