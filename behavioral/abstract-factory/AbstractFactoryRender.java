@@ -44,7 +44,7 @@ class MacFactory implements GUIFactory {
 class WindowsButton implements Button {
     @Override
     public void render() {
-        System.out.println("WindowsButton...");
+        System.out.println("Windows Button...");
     }
 }
 
