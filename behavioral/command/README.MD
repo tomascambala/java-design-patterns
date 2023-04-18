@@ -1,0 +1,3 @@
+# INTENT
+
+Encapsulate
