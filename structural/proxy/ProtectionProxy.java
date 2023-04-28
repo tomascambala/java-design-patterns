@@ -33,10 +33,10 @@ class DatabaseAccessProxy implements DatabaseAccess {
     
     @Override
     public void getAccess(User user) {
-        if (user.getRole().equals("admin")) {
+        if (user.getRole().equals("admin") || this.user.getUsername().equals(user.getUsername())) {
             databaseAccess.getAccess(user);
         } else {
-            System.out.println("Denied access. User " + user.getUsername() + " doesnt have right to access the database " + databaseAccess.getDbName());
+            System.out.println("Denied access." +  user.getUsername() + " doesn't have right to access the database " + databaseAccess.getDbName());
         }
     }
 }
@@ -62,10 +62,12 @@ class User {
 class Client {
     public static void main(String[] args) {
         User admin = new User("admin", "admin");
-        User user = new User("user", "user");
+        User user1 = new User("user1", "user");
+        User user2 = new User("user2", "user");
         
-        DatabaseAccess databaseAccess = new DatabaseAccessProxy("customers", user);
+        DatabaseAccess databaseAccess = new DatabaseAccessProxy("customers", user1);
         databaseAccess.getAccess(admin);
-        databaseAccess.getAccess(user); 
+        databaseAccess.getAccess(user1);
+        databaseAccess.getAccess(user2); 
     }
 }
