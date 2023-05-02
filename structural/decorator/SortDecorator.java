@@ -1,5 +1,4 @@
 package structural.decorator;
-
 import java.util.Arrays;
 
 interface SortingStrategy {

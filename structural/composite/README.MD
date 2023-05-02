@@ -1,0 +1,3 @@
+# INTENT
+
+## Applicability
