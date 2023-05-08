@@ -20,7 +20,7 @@ class Dron {
 
     public void fly() {
         isOn = true;
-        System.out.println("Dron is in the air");
+        System.out.println("Dron is in the air and dron is automatically on");
     }
 
     public boolean isOn() {
@@ -89,6 +89,7 @@ public class DronExample {
 
         remote.setCommand(switchOffCommand);
         remote.pressButton();
+        
         remote.flyButton();
     }
 }
