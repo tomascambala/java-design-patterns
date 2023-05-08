@@ -77,7 +77,7 @@ class RemoteControl {
     }
 }
 
-public class SwitcherExample {
+public class DronExample {
     public static void main(String[] args) {
         Dron dron = new Dron();
         Command switchOnCommand = new SwitchOnCommand(dron);
