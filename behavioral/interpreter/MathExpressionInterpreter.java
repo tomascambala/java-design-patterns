@@ -1,10 +1,10 @@
 import java.util.*;
 import java.util.Scanner;
 
-public class TextProcessInterpreter {
+public class MathExpressionInterpreter {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter an number: ");
+        System.out.print("Enter an number expression: ");
         String input = scanner.nextLine();
         int result = evaluate(input);
         System.out.println("Your result number is: " + result);
@@ -12,58 +12,57 @@ public class TextProcessInterpreter {
     
     private static int evaluate(String input) {
         List<String> postfix = infixToPostfix(input);
-        Stack<Integer> stack = new Stack<>();
+        Stack<Integer> exp = new Stack<>();
         for (String token : postfix) {
             if (isNumber(token)) {
-                stack.push(Integer.parseInt(token));
+                System.out.println("here2");
+                exp.push(Integer.parseInt(token));
             } else if (token.equals("+")) {
-                int a = stack.pop();
-                int b = stack.pop();
-                stack.push(a + b);
+                int a = exp.pop();
+                int b = exp.pop();
+                exp.push(a + b);
             } else if (token.equals("-")) {
-                int a = stack.pop();
-                int b = stack.pop();
-                stack.push(b - a);
+                int a = exp.pop();
+                int b = exp.pop();
+                exp.push(b - a);
             } else if (token.equals("*")) {
-                int a = stack.pop();
-                int b = stack.pop();
-                stack.push(a * b);
+                int a = exp.pop();
+                int b = exp.pop();
+                exp.push(a * b);
             } else if (token.equals("/")) {
-                int a = stack.pop();
-                int b = stack.pop();
-                stack.push(b / a);
-            } else {
-                System.out.println("Input is not valid");
+                int a = exp.pop();
+                int b = exp.pop();
+                exp.push(b / a);
             }
         }
-        return stack.pop();
+        return exp.pop();
     }
     
     private static List<String> infixToPostfix(String input) {
         List<String> postfix = new ArrayList<>();
-        Stack<String> stack = new Stack<>();
+        Stack<String> exp = new Stack<>();
         String[] tokens = input.split(" ");
         for (String token : tokens) {
             if (isNumber(token)) {
                 postfix.add(token);
             } else if (token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/")) {
-                while (!stack.isEmpty() && !stack.peek().equals("(") && precedence(token) <= precedence(stack.peek())) {
-                    postfix.add(stack.pop());
+                while (!exp.isEmpty() && !exp.peek().equals("(") && precedence(token) <= precedence(exp.peek())) {
+                    postfix.add(exp.pop());
                 }
-                stack.push(token);
+                exp.push(token);
             } else if (token.equals("(")) {
-                stack.push(token);
+                exp.push(token);
             } else if (token.equals(")")) {
-                while (!stack.isEmpty() && !stack.peek().equals("(")) {
-                    postfix.add(stack.pop());
+                while (!exp.isEmpty() && !exp.peek().equals("(")) {
+                    postfix.add(exp.pop());
                 }
-                if (!stack.isEmpty() && stack.peek().equals("(")) {
-                    stack.pop();
+                if (!exp.isEmpty() && exp.peek().equals("(")) {
+                    exp.pop();
                 }
             }
         }
-        while (!stack.isEmpty()) {
-            postfix.add(stack.pop());
+        while (!exp.isEmpty()) {
+            postfix.add(exp.pop());
         }
         return postfix;
     }
