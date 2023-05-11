@@ -8,6 +8,7 @@ public class MathExpressionInterpreter {
         String input = scanner.nextLine();
         int result = evaluate(input);
         System.out.println("Your result number is: " + result);
+        scanner.close();
     }
     
     private static int evaluate(String input) {
